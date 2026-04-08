@@ -27,6 +27,7 @@ jobs:
         cp -r apk_build/www ios_build/
         cp apk_build/capacitor.config.json ios_build/
         cp apk_build/package.json ios_build/
+        cp apk_build/package-lock.json ios_build/
         
     - name: Install dependencies
       run: |
