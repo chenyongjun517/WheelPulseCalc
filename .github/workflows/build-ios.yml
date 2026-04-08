@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd ios_build
-        npm ci
+        npm install
         
     - name: Add iOS platform
       run: |
