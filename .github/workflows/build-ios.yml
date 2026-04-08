@@ -1,0 +1,70 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Prepare iOS project directory
+      run: |
+        # 创建 iOS 专用目录，复制源码
+        mkdir -p ios_build
+        cp -r apk_build/www ios_build/
+        cp apk_build/capacitor.config.json ios_build/
+        cp apk_build/package.json ios_build/
+        
+    - name: Install dependencies
+      run: |
+        cd ios_build
+        npm ci
+        
+    - name: Add iOS platform
+      run: |
+        cd ios_build
+        npx cap add ios
+        
+    - name: Sync Capacitor
+      run: |
+        cd ios_build
+        npx cap sync ios
+        
+    - name: Build iOS App (Simulator)
+      run: |
+        cd ios_build/ios/App
+        xcodebuild -workspace App.xcworkspace \
+          -scheme App \
+          -destination 'platform=iOS Simulator,name=iPhone 15' \
+          -configuration Release \
+          build
+          
+    - name: Create output directory
+      run: mkdir -p ios_output
+      
+    - name: Package Simulator App
+      run: |
+        cd ios_build/ios/App/build/Release-iphonesimulator
+        zip -r ../../../../ios_output/速度计算器-iOS-Simulator.zip App.app
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-simulator-build
+        path: ios_output/速度计算器-iOS-Simulator.zip
+        
+    - name: List output
+      run: ls -la ios_output/

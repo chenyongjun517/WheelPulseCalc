@@ -1,0 +1,81 @@
+<view class="container">
+
+  <!-- ===== 第一区块：实际脉冲计算 ===== -->
+  <view class="section-title">脉冲校准</view>
+
+  <view class="form-item">
+    <text class="label">原轮径 (mm):</text>
+    <input class="input" type="digit" placeholder="请输入原轮径"
+      value="{{form1.origDiameter}}" bindinput="onInput1" data-field="origDiameter" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">原脉冲数:</text>
+    <input class="input" type="digit" placeholder="请输入原脉冲数"
+      value="{{form1.origPulse}}" bindinput="onInput1" data-field="origPulse" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">实际轮径 (mm):</text>
+    <input class="input" type="digit" placeholder="请输入实际轮径"
+      value="{{form1.actualDiameter}}" bindinput="onInput1" data-field="actualDiameter" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">实际脉冲数:</text>
+    <input class="input-readonly" type="text" placeholder="计算结果"
+      value="{{form1.actualPulse}}" disabled />
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-tip" wx:if="{{error1}}">{{error1}}</view>
+
+  <view class="button-group">
+    <button class="btn-clear" bindtap="clearSection1">清空</button>
+    <button class="btn-calc-purple" bindtap="calcPulse">计算实际脉冲</button>
+  </view>
+
+  <!-- 分隔线 -->
+  <view class="divider"></view>
+
+  <!-- ===== 第二区块：实际轮径计算 ===== -->
+  <view class="section-title section-offset">轮径校准</view>
+
+  <view class="form-item">
+    <text class="label">实际走行距离 (m):</text>
+    <input class="input" type="digit" placeholder="请输入实际走行距离"
+      value="{{form2.actualDist}}" bindinput="onInput2" data-field="actualDist" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">DMI走行距离 (m):</text>
+    <input class="input" type="digit" placeholder="请输入DMI走行距离"
+      value="{{form2.dmiDist}}" bindinput="onInput2" data-field="dmiDist" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">调整前GYK轮径(mm):</text>
+    <input class="input" type="digit" placeholder="请输入GYK轮径"
+      value="{{form2.gykDiameter}}" bindinput="onInput2" data-field="gykDiameter" />
+  </view>
+
+  <view class="form-item">
+    <text class="label">实际轮径 (mm):</text>
+    <input class="input-readonly" type="text" placeholder="计算结果"
+      value="{{form2.resultDiameter}}" disabled />
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-tip" wx:if="{{error2}}">{{error2}}</view>
+
+  <view class="button-group">
+    <button class="btn-clear" bindtap="clearSection2">清空</button>
+    <button class="btn-calc-purple" bindtap="calcDiameter">计算实际轮径</button>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    本软件仅限于个人学习、研究或非商用用途，未经授权禁止用于商业目的，产生的一切后果由本人全部承担。
+  </view>
+
+</view>

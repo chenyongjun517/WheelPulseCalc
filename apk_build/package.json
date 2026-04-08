@@ -1,0 +1,20 @@
+{
+  "name": "apk_build",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cap:add": "cap add android",
+    "cap:sync": "cap sync",
+    "build:apk": "cd android && gradlew assembleDebug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/cli": "^5.7.0",
+    "@capacitor/core": "^5.7.0"
+  }
+}

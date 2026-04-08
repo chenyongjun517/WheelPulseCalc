@@ -1,0 +1,9 @@
+{
+  "appId": "com.wheelpulse.calculator",
+  "appName": "DP3031速度计算",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

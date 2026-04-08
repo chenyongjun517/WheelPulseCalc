@@ -1,0 +1,102 @@
+<scroll-view scroll-y class="scroll-wrap">
+  <view class="container">
+
+    <!-- GYK设置脉冲数 -->
+    <view class="form-item">
+      <text class="label">GYK设置脉冲数:</text>
+      <input class="input" type="digit" placeholder="请输入GYK设置脉冲数"
+        value="{{gykPulse}}" bindinput="onInput" data-field="gykPulse" />
+    </view>
+
+    <!-- 2159一圈脉冲数 -->
+    <view class="form-item">
+      <text class="label">2159一圈脉冲数:</text>
+      <input class="input" type="digit" placeholder="请输入2159一圈脉冲数"
+        value="{{pulse2159}}" bindinput="onInput" data-field="pulse2159" />
+    </view>
+
+    <!-- GYK轮径 -->
+    <view class="form-item">
+      <text class="label">GYK轮径 (mm):</text>
+      <input class="input" type="digit" placeholder="请输入GYK轮径"
+        value="{{gykWheelDiameter}}" bindinput="onInput" data-field="gykWheelDiameter" />
+    </view>
+
+    <!-- 速度表表头脉冲数 -->
+    <view class="form-item">
+      <text class="label">表头脉冲数:</text>
+      <input class="input" type="digit" placeholder="请输入表头脉冲数"
+        value="{{speedMeterCount}}" bindinput="onInput" data-field="speedMeterCount" />
+    </view>
+
+    <!-- 伞齿轮转速比 -->
+    <view class="form-item">
+      <text class="label">伞齿轮转速比:</text>
+      <input class="input" type="digit" placeholder="请输入伞齿轮转速比"
+        value="{{gearRatio}}" bindinput="onInput" data-field="gearRatio" />
+    </view>
+
+    <!-- DP3031脉冲数 -->
+    <view class="form-item">
+      <text class="label">DP3031脉冲数:</text>
+      <input class="input" type="digit" placeholder="请输入DP3031脉冲数"
+        value="{{dp3031Pulse}}" bindinput="onInput" data-field="dp3031Pulse" />
+    </view>
+
+    <!-- DP3031安装位置 -->
+    <view class="form-item">
+      <text class="label">DP3031安装位置:</text>
+      <picker class="picker-wrap" mode="selector" range="{{positionOptions}}"
+        value="{{positionIndex}}" bindchange="onPositionChange">
+        <view class="picker-text {{positionIndex === 0 ? 'placeholder' : ''}}">
+          {{positionOptions[positionIndex]}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- N值结果（只读） -->
+    <view class="form-item">
+      <text class="label">DP3031拨码N值:</text>
+      <input class="input-readonly" type="text"
+        value="{{dp3031Ratio}}" disabled placeholder="计算结果" />
+    </view>
+
+    <!-- 错误提示 -->
+    <view class="error-tip" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <!-- 按钮 -->
+    <view class="button-group">
+      <button class="btn-clear" bindtap="onClear">清空</button>
+      <button class="btn-calc" bindtap="onCalc">N值计算</button>
+    </view>
+
+    <!-- 版本切换栏：常驻显示（在按钮下方） -->
+    <view class="version-bar">
+      <text class="version-label">拨码版本：</text>
+      <button class="btn-ver {{currentVersion === 'V3.0' ? 'btn-ver-active' : ''}}"
+        bindtap="switchVersion" data-ver="V3.0">V3.0 (6位)</button>
+      <button class="btn-ver {{currentVersion === 'V3.1' ? 'btn-ver-active' : ''}}"
+        bindtap="switchVersion" data-ver="V3.1">V3.1 (8位)</button>
+    </view>
+
+    <!-- 拨码对照表 -->
+    <view class="dip-table-wrap" wx:if="{{dipItems.length > 0}}">
+      <view class="dip-title-row">
+        <text class="dip-title">拨码对照表（{{currentVersion}}）</text>
+        <text class="dip-calc-n">--- 计算N值：{{dp3031Ratio}}</text>
+      </view>
+      <view class="dip-table">
+        <view class="dip-row dip-header">
+          <text class="dip-cell-n">N值</text>
+          <text class="dip-cell-b">二进制拨码(0=ON 1=OFF 右起第1位)</text>
+        </view>
+        <view class="dip-row {{item.isNearest ? 'dip-row-nearest' : ''}}"
+          wx:for="{{dipItems}}" wx:key="index">
+          <text class="dip-cell-n {{item.isNearest ? 'dip-cell-n-highlight' : ''}}">{{item.value}}</text>
+          <text class="dip-cell-b {{item.isNearest ? 'dip-cell-b-highlight' : ''}}">{{item.binary}}{{item.isNearest ? ' ← 推荐' : ''}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

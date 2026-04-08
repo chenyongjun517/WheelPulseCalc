@@ -1,0 +1,77 @@
+<view class="container">
+
+  <!-- GYK设置脉冲数 -->
+  <view class="form-item">
+    <text class="label">GYK设置脉冲数:</text>
+    <input class="input" type="digit" placeholder="请输入GYK设置脉冲数"
+      value="{{gykPulse}}" bindinput="onInput" data-field="gykPulse" />
+  </view>
+
+  <!-- 2159一圈脉冲数 -->
+  <view class="form-item">
+    <text class="label">2159一圈脉冲数:</text>
+    <input class="input" type="digit" placeholder="请输入2159一圈脉冲数"
+      value="{{pulse2159}}" bindinput="onInput" data-field="pulse2159" />
+  </view>
+
+  <!-- DP3031拨码盘比例 -->
+  <view class="form-item">
+    <text class="label">DP3031拨码N值:</text>
+    <input class="input" type="digit" placeholder="请输入DP3031拨码N值"
+      value="{{dp3031Ratio}}" bindinput="onInput" data-field="dp3031Ratio" />
+  </view>
+
+  <!-- 速度表表头数 -->
+  <view class="form-item">
+    <text class="label">速度表表头数:</text>
+    <input class="input" type="digit" placeholder="请输入速度表表头数"
+      value="{{speedMeterCount}}" bindinput="onInput" data-field="speedMeterCount" />
+  </view>
+
+  <!-- 伞齿轮转速比 -->
+  <view class="form-item">
+    <text class="label">伞齿轮转速比:</text>
+    <input class="input" type="digit" placeholder="请输入伞齿轮转速比"
+      value="{{gearRatio}}" bindinput="onInput" data-field="gearRatio" />
+  </view>
+
+  <!-- DP3031安装位置 -->
+  <view class="form-item">
+    <text class="label">DP3031安装位置:</text>
+    <picker class="picker-wrap" mode="selector" range="{{positionOptions}}"
+      value="{{positionIndex}}" bindchange="onPositionChange">
+      <view class="picker-text {{positionIndex === 0 ? 'placeholder' : ''}}">
+        {{positionOptions[positionIndex]}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- DP3031脉冲数 -->
+  <view class="form-item">
+    <text class="label">DP3031脉冲数:</text>
+    <input class="input" type="digit" placeholder="请输入DP3031脉冲数"
+      value="{{dp3031Pulse}}" bindinput="onInput" data-field="dp3031Pulse" />
+  </view>
+
+  <!-- GYK轮径（结果，只读） -->
+  <view class="form-item">
+    <text class="label">GYK 轮径 (mm):</text>
+    <input class="input-readonly" type="text"
+      value="{{gykWheelDiameter}}" disabled placeholder="计算结果" />
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-tip" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+  <!-- 按钮 -->
+  <view class="button-group">
+    <button class="btn-clear" bindtap="onClear">清空</button>
+    <button class="btn-calc-orange" bindtap="onCalc">轮径参数计算</button>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    本软件仅限于个人学习、研究或非商用用途，未经授权禁止用于商业目的，产生的一切后果由本人全部承担。
+  </view>
+
+</view>

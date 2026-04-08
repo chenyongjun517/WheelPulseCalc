@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+ios_build/
+ios_output/
+output/
+*.apk
+*.ipa
+
+# Android build
+apk_build/android/app/build/
+apk_build/android/.gradle/
+apk_build/android/build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local env
+.env
+.env.local

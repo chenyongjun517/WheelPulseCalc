@@ -1,0 +1,144 @@
+.scroll-wrap {
+  height: 100vh;
+}
+
+/* 版本切换栏：常驻显示在按钮下方 */
+.version-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 14rpx 16rpx;
+  margin-top: 16rpx;
+  box-shadow: 0 1rpx 3rpx rgba(0,0,0,0.06);
+}
+
+.version-label {
+  font-size: 26rpx;
+  color: #555;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.btn-ver {
+  font-size: 24rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 24rpx;
+  border-radius: 28rpx;
+  border: 1rpx solid #d0dce8;
+  background: #f5f5f5;
+  color: #666;
+  margin-right: 16rpx;
+  min-width: 0;
+}
+
+.btn-ver-active {
+  background: #1890ff;
+  color: #fff;
+  border-color: #1890ff;
+}
+
+/* 拨码对照表 */
+.dip-table-wrap {
+  margin-top: 20rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.06);
+}
+
+.dip-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #1890ff;
+  flex-shrink: 0;
+}
+
+/* 标题行：标题 + 计算N值在同一行 */
+.dip-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 16rpx 20rpx 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dip-calc-n {
+  font-size: 26rpx;
+  color: #e63c00;
+  font-weight: bold;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+/* 推荐N值醒目颜色 */
+.dip-cell-n-highlight {
+  color: #d4380d !important;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.dip-cell-b-highlight {
+  color: #d4380d !important;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.dip-table {
+  width: 100%;
+}
+
+.dip-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid #f0f0f0;
+  padding: 14rpx 18rpx;
+}
+
+.dip-header {
+  background: #e8f4ff;
+  font-weight: bold;
+}
+
+.dip-row-nearest {
+  background: #fff7e6;
+  border-left: 8rpx solid #fa8c16;
+  border-right: 8rpx solid #fa8c16;
+}
+
+.dip-row-nearest .dip-cell-n {
+  color: #fa8c16;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.dip-row-nearest .dip-cell-b {
+  color: #fa8c16;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.dip-cell-n {
+  width: 110rpx;
+  font-size: 24rpx;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.dip-cell-b {
+  flex: 1;
+  font-size: 22rpx;
+  color: #333;
+  font-family: monospace;
+}
+
+.dip-header .dip-cell-n,
+.dip-header .dip-cell-b {
+  color: #1890ff;
+  font-size: 20rpx;
+}

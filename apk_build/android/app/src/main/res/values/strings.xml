@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DP3031速度计算</string>
+    <string name="title_activity_main">DP3031速度计算</string>
+    <string name="package_name">com.wheelpulse.calculator</string>
+    <string name="custom_url_scheme">com.wheelpulse.calculator</string>
+</resources>

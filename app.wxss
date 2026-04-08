@@ -1,0 +1,222 @@
+/* 全局样式 */
+page {
+  background-color: #f0f4f8;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===== 通用表单 ===== */
+.container {
+  padding: 16rpx 20rpx 30rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 12rpx 16rpx;
+  box-shadow: 0 1rpx 3rpx rgba(0,0,0,0.05);
+}
+
+.label {
+  width: 260rpx;
+  font-size: 28rpx;
+  color: #333;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.hint-label {
+  width: 260rpx;
+  font-size: 28rpx;
+  color: #333;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.input {
+  flex: 1;
+  height: 68rpx;
+  border: 1rpx solid #d0dce8;
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.input-readonly {
+  flex: 1;
+  height: 68rpx;
+  border: 2rpx solid #91caff;
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  font-size: 30rpx;
+  background-color: #e8f4ff;
+  color: #1890ff;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.hint {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 8rpx;
+  flex-shrink: 0;
+}
+
+/* picker 样式 */
+.picker-wrap {
+  flex: 1;
+  height: 68rpx;
+  border: 1rpx solid #d0dce8;
+  border-radius: 8rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+}
+
+.picker-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.picker-text.placeholder {
+  color: #aaa;
+}
+
+/* ===== 错误提示 ===== */
+.error-tip {
+  font-size: 26rpx;
+  color: #ff4d4f;
+  background-color: #fff2f0;
+  border: 1rpx solid #ffccc7;
+  border-radius: 8rpx;
+  padding: 12rpx 18rpx;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+}
+
+/* ===== 按钮组 ===== */
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16rpx;
+  margin-top: 14rpx;
+  margin-bottom: 6rpx;
+}
+
+.btn-calc {
+  flex: 1;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 27rpx;
+  font-weight: bold;
+  background-color: #1890ff;
+  color: #fff;
+  border-radius: 10rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-calc:active {
+  opacity: 0.8;
+}
+
+.btn-calc-orange {
+  flex: 1;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 27rpx;
+  font-weight: bold;
+  background-color: #fa8c16;
+  color: #fff;
+  border-radius: 10rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-calc-orange:active {
+  opacity: 0.8;
+}
+
+.btn-clear {
+  width: 140rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 25rpx;
+  background-color: #ff4d4f;
+  color: #fff;
+  border-radius: 10rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-clear:active {
+  opacity: 0.8;
+}
+
+/* ===== 分隔线 ===== */
+.divider {
+  height: 2rpx;
+  background-color: #d0dce8;
+  margin: 20rpx 0;
+}
+
+/* ===== 区块标题 ===== */
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1890ff;
+  margin-bottom: 10rpx;
+  margin-top: 2rpx;
+  padding-left: 4rpx;
+}
+
+/* ===== 结果展示卡片 ===== */
+.result-card {
+  background: #e8f4ff;
+  border: 2rpx solid #91caff;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  margin-top: 12rpx;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rpx;
+}
+
+.result-label {
+  font-size: 24rpx;
+  color: #555;
+  width: 180rpx;
+  flex-shrink: 0;
+}
+
+.result-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1890ff;
+}
+
+/* ===== 免责声明 ===== */
+.disclaimer {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  line-height: 1.5;
+  padding: 30rpx 20rpx 20rpx;
+  margin-top: 20rpx;
+}

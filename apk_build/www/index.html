@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>轮径脉冲计算器 V1.0</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <div class="nav-tab active" data-page="nValue" style="background: #1890ff;">N值计算</div>
+    <div class="nav-tab" data-page="wheelParam" style="background: #fa8c16;">轮径参数计算</div>
+    <div class="nav-tab" data-page="converter" style="background: #722ed1;">轮径脉冲校正</div>
+  </nav>
+
+  <!-- 页面容器 -->
+  <div class="pages-container">
+    <!-- N值计算页面 -->
+    <div class="page active" id="page-nValue">
+      <div class="scroll-wrap">
+        <div class="container">
+          <!-- GYK设置脉冲数 -->
+          <div class="form-item">
+            <span class="label">GYK设置脉冲数:</span>
+            <input class="input" type="number" step="any" placeholder="请输入" id="gykPulse">
+          </div>
+
+          <!-- 2159一圈脉冲数 -->
+          <div class="form-item">
+            <span class="label">2159一圈脉冲数:</span>
+            <input class="input" type="number" step="any" placeholder="请输入（默认8）" id="pulse2159">
+          </div>
+
+          <!-- GYK轮径 -->
+          <div class="form-item">
+            <span class="label">GYK轮径 (mm):</span>
+            <input class="input" type="number" step="any" placeholder="请输入" id="gykWheelDiameter">
+          </div>
+
+          <!-- 速度表表头脉冲数 -->
+          <div class="form-item">
+            <span class="label">表头脉冲数:</span>
+            <input class="input" type="number" step="any" placeholder="请输入" id="speedMeterCount">
+          </div>
+
+          <!-- 伞齿轮转速比 -->
+          <div class="form-item">
+            <span class="label">伞齿轮转速比:</span>
+            <input class="input" type="number" step="any" placeholder="请输入" id="gearRatio">
+          </div>
+
+          <!-- DP3031脉冲数 -->
+          <div class="form-item">
+            <span class="label">DP3031脉冲数:</span>
+            <input class="input" type="number" step="any" placeholder="请输入" id="dp3031Pulse">
+          </div>
+
+          <!-- DP3031安装位置 -->
+          <div class="form-item">
+            <span class="label">DP3031安装位置:</span>
+            <select class="picker-wrap" id="positionIndex">
+              <option value="0">请选择安装位置</option>
+              <option value="1">直通</option>
+              <option value="2">侧位</option>
+            </select>
+          </div>
+
+          <!-- N值结果（只读） -->
+          <div class="form-item">
+            <span class="label">DP3031拨码N值:</span>
+            <input class="input-readonly" type="text" id="dp3031Ratio" readonly placeholder="计算结果">
+          </div>
+
+          <!-- 错误提示 -->
+          <div class="error-tip" id="errorMsg-nValue" style="display: none;"></div>
+
+          <!-- 按钮 -->
+          <div class="button-group">
+            <button class="btn-clear" onclick="nValuePage.onClear()">清空</button>
+            <button class="btn-calc" onclick="nValuePage.onCalc()">N值计算</button>
+          </div>
+
+          <!-- 版本切换栏 -->
+          <div class="version-bar">
+            <span class="version-label">拨码版本：</span>
+            <button class="btn-ver" id="btn-v30" onclick="nValuePage.switchVersion('V3.0')">V3.0 (6位)</button>
+            <button class="btn-ver btn-ver-active" id="btn-v31" onclick="nValuePage.switchVersion('V3.1')">V3.1 (8位)</button>
+          </div>
+
+          <!-- 拨码对照表 -->
+          <div class="dip-table-wrap" id="dipTableWrap" style="display: none;">
+            <div class="dip-title">拨码对照表（<span id="currentVersion">V3.1</span>）</div>
+            <div class="dip-subtitle">计算N值: <span id="displayRatio"></span></div>
+            <div class="dip-table">
+              <div class="dip-row dip-header">
+                <span class="dip-cell-n">N值</span>
+                <span class="dip-cell-b">二进制拨码(0=ON 1=OFF 右起第1位)</span>
+              </div>
+              <div id="dipTableBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 轮径参数计算页面 -->
+    <div class="page" id="page-wheelParam">
+      <div class="container">
+        <!-- GYK设置脉冲数 -->
+        <div class="form-item">
+          <span class="label">GYK设置脉冲数:</span>
+          <input class="input" type="number" step="any" placeholder="请输入" id="wp-gykPulse">
+        </div>
+
+        <!-- 2159一圈脉冲数 -->
+        <div class="form-item">
+          <span class="label">2159一圈脉冲数:</span>
+          <input class="input" type="number" step="any" placeholder="请输入（默认8）" id="wp-pulse2159">
+        </div>
+
+        <!-- DP3031拨码盘比例 -->
+        <div class="form-item">
+          <span class="label">DP3031拨码N值:</span>
+          <input class="input" type="number" step="any" placeholder="请输入" id="wp-dp3031Ratio">
+        </div>
+
+        <!-- 速度表表头数 -->
+        <div class="form-item">
+          <span class="label">速度表表头数:</span>
+          <input class="input" type="number" step="any" placeholder="请输入" id="wp-speedMeterCount">
+        </div>
+
+        <!-- 伞齿轮转速比 -->
+        <div class="form-item">
+          <span class="label">伞齿轮转速比:</span>
+          <input class="input" type="number" step="any" placeholder="请输入" id="wp-gearRatio">
+        </div>
+
+        <!-- DP3031安装位置 -->
+        <div class="form-item">
+          <span class="label">DP3031安装位置:</span>
+          <select class="picker-wrap" id="wp-positionIndex">
+            <option value="0">请选择安装位置</option>
+            <option value="1">直通</option>
+            <option value="2">侧位</option>
+          </select>
+        </div>
+
+        <!-- DP3031脉冲数 -->
+        <div class="form-item">
+          <span class="label">DP3031脉冲数:</span>
+          <input class="input" type="number" step="any" placeholder="请输入" id="wp-dp3031Pulse">
+        </div>
+
+        <!-- GYK轮径（结果，只读） -->
+        <div class="form-item">
+          <span class="label">GYK 轮径 (mm):</span>
+          <input class="input-readonly" type="text" id="wp-gykWheelDiameter" readonly placeholder="计算结果">
+        </div>
+
+        <!-- 错误提示 -->
+        <div class="error-tip" id="errorMsg-wheelParam" style="display: none;"></div>
+
+        <!-- 按钮 -->
+        <div class="button-group">
+          <button class="btn-clear" onclick="wheelParamPage.onClear()">清空</button>
+          <button class="btn-calc-orange" onclick="wheelParamPage.onCalc()">轮径参数计算</button>
+        </div>
+
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+          本软件仅限于个人学习、研究或非商用用途，未经授权禁止用于商业目的，产生的一切后果由本人全部承担。
+        </div>
+      </div>
+    </div>
+
+    <!-- 轮径脉冲校正页面 -->
+    <div class="page" id="page-converter">
+      <div class="container">
+        <!-- 第一区块：实际脉冲计算 -->
+        <div class="section-title">脉冲校准</div>
+
+        <div class="form-item">
+          <span class="label">原轮径 (mm):</span>
+          <input class="input" type="number" step="any" placeholder="请输入原轮径" id="cv-origDiameter">
+        </div>
+
+        <div class="form-item">
+          <span class="label">原脉冲数:</span>
+          <input class="input" type="number" step="any" placeholder="请输入原脉冲数" id="cv-origPulse">
+        </div>
+
+        <div class="form-item">
+          <span class="label">实际轮径 (mm):</span>
+          <input class="input" type="number" step="any" placeholder="请输入实际轮径" id="cv-actualDiameter">
+        </div>
+
+        <div class="form-item">
+          <span class="label">实际脉冲数:</span>
+          <input class="input-readonly" type="text" id="cv-actualPulse" readonly placeholder="计算结果">
+        </div>
+
+        <!-- 错误提示 -->
+        <div class="error-tip" id="error1" style="display: none;"></div>
+
+        <div class="button-group">
+          <button class="btn-clear" onclick="converterPage.clearSection1()">清空</button>
+          <button class="btn-calc-purple" onclick="converterPage.calcPulse()">计算实际脉冲</button>
+        </div>
+
+        <!-- 分隔线 -->
+        <div class="divider"></div>
+
+        <!-- 第二区块：实际轮径计算 -->
+        <div class="section-title section-offset">轮径校准</div>
+
+        <div class="form-item">
+          <span class="label">实际走行距离 (m):</span>
+          <input class="input" type="number" step="any" placeholder="请输入实际走行距离" id="cv-actualDist">
+        </div>
+
+        <div class="form-item">
+          <span class="label">DMI走行距离 (m):</span>
+          <input class="input" type="number" step="any" placeholder="请输入DMI走行距离" id="cv-dmiDist">
+        </div>
+
+        <div class="form-item">
+          <span class="label">调整前GYK轮径(mm):</span>
+          <input class="input" type="number" step="any" placeholder="请输入GYK轮径" id="cv-gykDiameter">
+        </div>
+
+        <div class="form-item">
+          <span class="label">实际轮径 (mm):</span>
+          <input class="input-readonly" type="text" id="cv-resultDiameter" readonly placeholder="计算结果">
+        </div>
+
+        <!-- 错误提示 -->
+        <div class="error-tip" id="error2" style="display: none;"></div>
+
+        <div class="button-group">
+          <button class="btn-clear" onclick="converterPage.clearSection2()">清空</button>
+          <button class="btn-calc-purple" onclick="converterPage.calcDiameter()">计算实际轮径</button>
+        </div>
+
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+          本软件仅限于个人学习、研究或非商用用途，未经授权禁止用于商业目的，产生的一切后果由本人全部承担。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 提示 -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

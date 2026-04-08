@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/nValue/nValue",
+    "pages/wheelParam/wheelParam",
+    "pages/converter/converter"
+  ],
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#1890ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "fontSize": "18px",
+    "list": [
+      {
+        "pagePath": "pages/nValue/nValue",
+        "text": "N值计算"
+      },
+      {
+        "pagePath": "pages/wheelParam/wheelParam",
+        "text": "轮径参数计算"
+      },
+      {
+        "pagePath": "pages/converter/converter",
+        "text": "轮径脉冲校正"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#1890ff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "DP3031计算器 V1.0",
+    "backgroundColor": "#f0f4f8",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

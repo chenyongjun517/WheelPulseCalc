@@ -1,0 +1,24 @@
+/* 紫色计算按钮 */
+.btn-calc-purple {
+  flex: 1;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 27rpx;
+  font-weight: bold;
+  background-color: #722ed1;
+  color: #fff;
+  border-radius: 10rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-calc-purple:active {
+  opacity: 0.8;
+}
+
+/* 轮径校正区块整体下移，与上方脉冲换算区分 */
+.section-offset {
+  margin-top: 40rpx;
+}
