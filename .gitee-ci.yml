@@ -1,0 +1,33 @@
+stages:
+  - build-ios
+
+build-ios-job:
+  stage: build-ios
+  image: macos-latest
+  script:
+    # 准备 iOS 项目目录
+    - mkdir -p ios_build
+    - cp -r apk_build/www ios_build/
+    - cp apk_build/capacitor.config.json ios_build/
+    - cp apk_build/package.json ios_build/
+    
+    # 安装依赖
+    - cd ios_build && npm ci
+    
+    # 添加 iOS 平台
+    - npx cap add ios
+    - npx cap sync ios
+    
+    # 构建 iOS App (Simulator)
+    - cd ios/App
+    - xcodebuild -workspace App.xcworkspace -scheme App -destination 'platform=iOS Simulator,name=iPhone 15' -configuration Release build
+    
+    # 打包
+    - mkdir -p ../../ios_output
+    - cd build/Release-iphonesimulator
+    - zip -r ../../../../ios_output/速度计算器-iOS-Simulator.zip App.app
+    
+  artifacts:
+    paths:
+      - ios_output/速度计算器-iOS-Simulator.zip
+    expire_in: 30 days
